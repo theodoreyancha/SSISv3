@@ -1,0 +1,45 @@
+{% extends "base.html" %} {% block content %}
+
+<body>
+  <div class="d-flex justify-content-center text-center p-5">
+    <h1 class="font-weight-bold" id="title">
+      Simple Student Information System
+    </h1>
+  </div>
+
+  <div class="container col-3">
+    <div class="d-flex justify-content-center py-2 text-center">
+      <h1 class="font-weight-bold" id="mainMenu">Main Menu</h1>
+    </div>
+    <form
+      class="d-flex justify-content-center py-2"
+      action="/main_menu/student_table"
+      method="post"
+    >
+      <button type="submit" class="btn-lg btn-link btn-block" id="loginBtn">
+        Student
+      </button>
+    </form>
+    <form
+      class="d-flex justify-content-center py-2"
+      action="/main_menu/course_table"
+      method="post"
+    >
+      <button type="submit" class="btn-lg btn-link btn-block" id="loginBtn">
+        Course
+      </button>
+    </form>
+    <form
+      class="d-flex justify-content-center py-2"
+      action="/main_menu/college_table"
+      method="post"
+    >
+      <button type="submit" class="btn-lg btn-link btn-block" id="loginBtn">
+        College
+      </button>
+    </form>
+  </div>
+  <body>
+    {% endblock %}
+  </body>
+</body>
