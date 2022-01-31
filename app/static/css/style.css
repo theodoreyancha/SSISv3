@@ -1,0 +1,44 @@
+body {
+  font-family: Lato;
+  background-color: #8c2207;
+  color: rgb(255, 255, 255);
+  height: 100%;
+}
+#title {
+  color: #ffffffde;
+  font-size: 60pt;
+}
+#usernameFld {
+  size: 35;
+}
+#usernameTxt {
+  font-size: 30pt;
+}
+
+#passwordFld {
+  size: 35;
+}
+#passwordTxt {
+  font-size: 30pt;
+}
+#loginBtn {
+  background-color: #ff0000;
+  color: #ffffff;
+}
+
+#mainMenu {
+  color: #ffffff;
+  font-size: 70pt;
+}
+#logout {
+  background-color: #ff3333;
+  color: #ffffff;
+}
+
+#picture {
+  background-image: url("app/static/image.png");
+}
+
+.custom-clickable-row {
+  cursor: pointer;
+}
