@@ -1,0 +1,126 @@
+{% extends "base.html" %} {% block content %}
+<script>
+  $(document).ready(function () {
+    $("#edit_dialog").dialog({
+      autoOpen: false,
+      width: 500,
+    });
+    var table = $("#myTable").DataTable();
+    $("table").on("click", "#deleteButton", function () {
+      var r = confirm("Confirm deletion?");
+      if (r == true) {
+        var currentRow = $(this).closest("tr").find("#college_code").text();
+        $.post(
+          "http://127.0.0.1:5000/main_menu/college_table/college_delete",
+          { currentRow },
+          function () {}
+        );
+        table.row($(this).parents("tr")).remove().draw();
+      }
+    });
+    $("table").on("click", "#editButton", function () {
+      var code = $(this).closest("tr").find("#college_code").text();
+      var name = $(this).closest("tr").find("#college_name").text();
+      $("#edit_dialog").dialog("open");
+			$("#o").val(code);
+      $("#s").val(code);
+      $("#n").val(name);
+      $("#c option[value=college]").attr("selected", "selected");
+    });
+  });
+</script>
+<form action="/main_menu">
+  <button type="submit" class="btn" id="loginBtn" name="submit">
+    Return
+  </button>
+</form>
+<div class="d-flex justify-content-center text-center">
+  <h1 class="font-weight-bold" id="title">College Table</h1>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <form
+        class="d-flex justify-content-center py-2"
+        action="/main_menu/college_table/college_add"
+        method="post"
+      >
+        <button type="submit" class="btn-lg btn-link btn-block" id="loginBtn">
+          Add
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <table class="display table table-striped table-hover" id="myTable">
+    <thead>
+      <tr>
+        <th scope="col">College Code</th>
+        <th scope="col">College Name</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in data %}
+      <tr>
+        <td id="college_code">{{row[0]}}</td>
+        <td id="college_name">{{row[1]}}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="editButton"
+            data-toggle="tooltip"
+            title="Edit"
+          >
+            <span class="fas fa-pencil-alt"></span>
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            id="deleteButton"
+            data-toggle="tooltip"
+            title="Delete"
+          >
+            <span class="fas fa-trash"></span>
+          </button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <div id="edit_dialog" title="Edit Course">
+      <form action="/main_menu/college_table/college_edit" method="post">
+				<input type="hidden" id="o" name="old_code" />
+        <div class="row">
+          <div class="col-4">
+            <label>College Code:</label>
+          </div>
+          <div class="col-8">
+            <input type="text" class="form-control" id="s" name="code" /><br />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <label>college:</label>
+          </div>
+          <div class="col-8">
+            <input type="text" class="form-control" id="n" name="name" /><br />
+          </div>
+        </div>
+        <div class="d-flex justify-content-center py-4">
+          <button
+            type="submit"
+            class="btn"
+            id="loginBtn"
+            name="submit"
+            onclick="return confirm('Are you sure you want to confirm?')"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </table>
+</div>
+{% endblock %}
