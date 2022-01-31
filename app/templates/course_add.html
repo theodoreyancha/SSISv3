@@ -1,0 +1,52 @@
+{% extends "base.html" %} {% block content %}
+
+<form action="/main_menu/course_table">
+  <button type="submit" class="btn" id="loginBtn" name="submit">
+    Back to Course Table
+  </button>
+</form>
+<div class="d-flex justify-content-center text-center p-5">
+  <h1 class="font-weight-bold" id="title">Add Course</h1>
+</div>
+<div class="d-flex form-group justify-content-center p-5 container">
+  <form action="" method="post">
+    <div class="row">
+      <div class="col-4">
+        <label>Course Code:</label>
+      </div>
+      <div class="col-8">
+        <input type="text" class="form-control" name="course_code" /><br />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label>Course:</label>
+      </div>
+      <div class="col-8">
+        <input type="text" class="form-control" name="course" /><br />
+      </div>
+    </div>
+    <div>
+      <div class="col text-center">
+        <label>College:</label>
+        <select class="form-control" name="college">
+          {% for row in data %}
+          <option>{{row[0]}}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center py-4">
+      <button
+        type="submit"
+        class="btn"
+        id="loginBtn"
+        name="submit"
+        onclick="return confirm('Are you sure you want to confirm?')"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %}
