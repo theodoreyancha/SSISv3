@@ -25,7 +25,7 @@ def index():
 
     mycursor = db.cursor(buffered=True)
 
-    mycursor.execute('SELECT `Course Name` FROM course')
+    mycursor.execute('SELECT `Code` FROM course')
     data = mycursor.fetchall()
 
     if request.method == 'POST' and 'student_id' in request.form:
